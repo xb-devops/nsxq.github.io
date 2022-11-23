@@ -8336,9 +8336,9 @@ select * from global_name;
 <span id="more"></span>
 
 <h1 id="K8S组件"><a href="#K8S组件" class="headerlink" title="K8S组件"></a>K8S组件</h1><ul>
-<li><strong>APISERVER：</strong>所有服务访问统一入口</li>
-<li><strong>Crontro lerManager:</strong>  维持副本期望数目</li>
-<li><strong>Scheduler：</strong>负责介绍任务，选择合适的节点进行分配任务</li>
+<li><strong>APISERVER：</strong>所有服务访问统一入口，并提供认证、授权、访问控制、API注册和发现等机制；</li>
+<li><strong>CrontrolerManager:</strong>  负责维护集群的状态，比如故障检测、自动扩展、滚动更新、维持副本期望数目等；</li>
+<li><strong>Scheduler：</strong>负责资源的调度，选择合适的节点进行分配任务</li>
 <li><strong>ETCD：</strong>键值对数据库 储存K8S集群所有重要信息 (持久化)</li>
 <li><strong>Kubelet：</strong>直接跟容器引擎交互实现容器的生命周期管理</li>
 <li><strong>Kube-proxy：</strong>负责写入规则至 IPTABLES、IPVS 实现服务映射访问的</li>
@@ -8397,7 +8397,7 @@ select * from global_name;
 <li>Pod 与 Service 之间的通讯：目前基于性能考虑，全部为 Iptables 维护和转发，新版本已支持lvs转发</li>
 </ul>
 <p>​    Pod 到外网：Pod 向外网发送请求，查找路由表，转发数据包到宿主机的网卡，宿主机网卡完成路由选择后，iptables执行 Masquerade，将源 IP 更改为宿主机网卡的 IP, 然后向外网服务器发送请求</p>
-<p>  外网访问 Pod：Service</p>
+<p>  <strong>外网访问 Pod：Service</strong></p>
 <p>​     </p>
 ]]></content>
       <categories>

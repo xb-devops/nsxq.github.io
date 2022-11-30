@@ -8122,8 +8122,6 @@ select * from global_name;
 <p><img src="/%5Cimages%5C2022%5C1128%5Charbor2.png" alt="K8S架构"></p>
 <h1 id="启动关闭Harbor"><a href="#启动关闭Harbor" class="headerlink" title="启动关闭Harbor"></a>启动关闭Harbor</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">启动harbor</span><br><span class="line">docker-compose start</span><br><span class="line">关闭harbor</span><br><span class="line">docker-compose start</span><br></pre></td></tr></table></figure>
 
-<h1 id="测试镜像使用"><a href="#测试镜像使用" class="headerlink" title="测试镜像使用"></a>测试镜像使用</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
 ]]></content>
       <categories>
         <category>DevOps</category>

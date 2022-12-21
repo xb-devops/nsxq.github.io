@@ -6314,12 +6314,12 @@ select * from global_name;
 </tr>
 </tbody></table>
 <h2 id="Router-ID"><a href="#Router-ID" class="headerlink" title="Router ID"></a>Router ID</h2><ul>
-<li>运行OSPF协议前，必须选取的一个RID</li>
-<li>用来唯一标识一台OSPF路由器</li>
-<li>RID可以手动配置，也可以自动生成</li>
-<li>RID选取规则顺序：1. 优先手动配置（推荐）；2. 活动回环接口中IP地址最高的；3. 活动物理接口中IP地址最高的</li>
-<li>任何选举值都未配置是运行不了OSPF的（router id为0.0.0.0）</li>
-<li>RID选举具有<strong>非抢占性</strong>，修改除非重启OSPF进程（R1&gt; reset ospf process）</li>
+<li><u>运行OSPF协议前，必须选取的一个RID</u></li>
+<li><u>用来唯一标识一台OSPF路由器</u></li>
+<li><u>RID可以手动配置，也可以自动生成</u></li>
+<li><u>RID选取规则顺序：1. 优先手动配置（推荐）；2. 活动回环接口中IP地址最高的；3. 活动物理接口中IP地址最高的</u></li>
+<li><u>任何选举值都未配置是运行不了OSPF的（router id为0.0.0.0）</u></li>
+<li><u>RID选举具有<strong>非抢占性</strong>，修改除非重启OSPF进程（R1&gt; reset ospf process）</u></li>
 </ul>
 <h2 id="OSPF数据包类型"><a href="#OSPF数据包类型" class="headerlink" title="OSPF数据包类型"></a>OSPF数据包类型</h2><p>OSPF数据包封装在IP协议之上，IP协议号89（ICMP 1, TCP 6, UDP 17）</p>
 <table>
@@ -7204,7 +7204,8 @@ select * from global_name;
   <entry>
     <title>HCIA 路由综合实验</title>
     <url>/arlo/6733a169/</url>
-    <content><![CDATA[<p>学完静态、rip、ospf路由后，做一下综合路由实验。这老师讲的真不错，<a href="https://www.bilibili.com/video/BV1Dg4y187bZ?p=41">https://www.bilibili.com/video/BV1Dg4y187bZ?p=41</a></p>
+    <content><![CDATA[<p>学完静态、rip、ospf路由后，做一下综合路由实验。</p>
+<p>这老师讲的真不错，<a href="https://www.bilibili.com/video/BV1Dg4y187bZ?p=41">https://www.bilibili.com/video/BV1Dg4y187bZ?p=41</a></p>
 <p><img src="/images/2021/0726/01.png" alt="01"></p>
 <span id="more"></span>
 
@@ -7710,7 +7711,7 @@ select * from global_name;
 <p><code>vim $PGDATA/postgresql.conf</code></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#listen_addresses = &#x27;localhost&#x27;         # what IP address(es) to listen on;</span><br><span class="line">listen_addresses = &#x27;*&#x27; </span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C2021%5C1022%5C02.png" alt="01"></p>
+<p><img src="/images/2021/1022/02.png" alt="01"></p>
 <h1 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">--获取帮助</span><br><span class="line">postgres=# \help create user</span><br><span class="line">Command:     CREATE USER</span><br><span class="line">Description: define a new database role</span><br><span class="line">Syntax:</span><br><span class="line">CREATE USER name [ [ WITH ] option [ ... ] ]</span><br><span class="line"></span><br><span class="line">where option can be:</span><br><span class="line"></span><br><span class="line">      SUPERUSER | NOSUPERUSER</span><br><span class="line">    | CREATEDB | NOCREATEDB</span><br><span class="line">    | CREATEROLE | NOCREATEROLE</span><br><span class="line">    | INHERIT | NOINHERIT</span><br><span class="line">    | LOGIN | NOLOGIN</span><br><span class="line">    | REPLICATION | NOREPLICATION</span><br><span class="line">    | BYPASSRLS | NOBYPASSRLS</span><br><span class="line">    | CONNECTION LIMIT connlimit</span><br><span class="line">    | [ ENCRYPTED ] PASSWORD &#x27;password&#x27; | PASSWORD NULL</span><br><span class="line">    | VALID UNTIL &#x27;timestamp&#x27;</span><br><span class="line">    | IN ROLE role_name [, ...]</span><br><span class="line">    | IN GROUP role_name [, ...]</span><br><span class="line">    | ROLE role_name [, ...]</span><br><span class="line">    | ADMIN role_name [, ...]</span><br><span class="line">    | USER role_name [, ...]</span><br><span class="line">    | SYSID uid</span><br><span class="line"></span><br><span class="line">URL: https://www.postgresql.org/docs/12/sql-createuser.html</span><br><span class="line"></span><br><span class="line">postgres=# create user user1 with PASSWORD &#x27;1&#x27;; --有login权限</span><br><span class="line">CREATE ROLE</span><br><span class="line">postgres=# create role user2 with PASSWORD &#x27;1&#x27;; --无login权限</span><br><span class="line">CREATE ROLE</span><br><span class="line">--查看用户信息</span><br><span class="line">postgres=# \du</span><br><span class="line">                                   List of roles</span><br><span class="line"> Role name |                         Attributes                         | Member of </span><br><span class="line">-----------+------------------------------------------------------------+-----------</span><br><span class="line"> postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | &#123;&#125;</span><br><span class="line"> user1     |                                                            | &#123;&#125;</span><br><span class="line"> user2     | Cannot login                                               | &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">--创建一个超级用户user1</span><br><span class="line">postgres=# create user user1 with SUPERUSER PASSWORD &#x27;111111&#x27;;</span><br><span class="line">CREATE ROLE</span><br><span class="line">--创建一个用户user2，允许登录，设置过期时间</span><br><span class="line">postgres=# create user user2 with LOGIN PASSWORD &#x27;user#123&#x27; VALID UNTIL &#x27;2022-09-30&#x27;;</span><br><span class="line">CREATE ROLE</span><br><span class="line">--删除用户</span><br><span class="line">postgres=# drop user user1;</span><br><span class="line">DROP ROLE</span><br><span class="line">--修改用户密码</span><br><span class="line">postgres=# alter user user2 with password &#x27;1&#x27;;</span><br><span class="line">ALTER ROLE</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h1 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h1><h2 id="权限级别"><a href="#权限级别" class="headerlink" title="权限级别"></a>权限级别</h2><ul>

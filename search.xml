@@ -7291,28 +7291,26 @@ select * from global_name;
 </tbody></table>
 <h1 id="静态路由配置"><a href="#静态路由配置" class="headerlink" title="静态路由配置"></a>静态路由配置</h1><p>实验要求：</p>
 <p>PC1：1.0.0.0&#x2F;24 PC2：2.0.0.0&#x2F;24 PC3：3.0.0.0&#x2F;4 配置静态路由，3台PC相互连通。 </p>
-<p><img src="/%5Cimages%5C2021%5C0701%5C01.png" alt="01"></p>
+<p><img src="/images/2021/0701/01.png" alt="01"></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#AR1</span><br><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g0/0/0</span><br><span class="line">ip add 1.0.0.1 24</span><br><span class="line"></span><br><span class="line">int g0/0/1</span><br><span class="line">ip add 2.0.0.1 24</span><br><span class="line"></span><br><span class="line">int g0/0/2</span><br><span class="line">ip add 12.0.0.2 24</span><br><span class="line">ip route-s 3.0.0.0 24 12.0.0.1</span><br><span class="line"></span><br><span class="line">#AR2</span><br><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line">int g0/0/0</span><br><span class="line">ip add 12.0.0.1 24</span><br><span class="line"></span><br><span class="line">int g0/0/1</span><br><span class="line">ip add 3.0.0.1 24</span><br><span class="line"></span><br><span class="line">ip route-s 1.0.0.0 24 12.0.0.2</span><br><span class="line">ip route-s 2.0.0.0 24 12.0.0.2</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-
-
 <h1 id="负载分担"><a href="#负载分担" class="headerlink" title="负载分担"></a>负载分担</h1><p>静态路由支持到达统一目标网络的等价负载分担</p>
-<p><img src="/%5Cimages%5C2021%5C0701%5C02.png" alt="01"></p>
+<p><img src="/images/2021/0701/02.png" alt="01"></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#AR1</span><br><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g0/0/0</span><br><span class="line">ip add 1.0.0.1 24</span><br><span class="line"></span><br><span class="line">int g0/0/1</span><br><span class="line">ip add 34.0.0.2 24</span><br><span class="line"></span><br><span class="line">int g0/0/2</span><br><span class="line">ip add 12.0.0.2 24</span><br><span class="line"></span><br><span class="line">ip route-s 3.0.0.0 24 12.0.0.1</span><br><span class="line">ip route-s 3.0.0.0 24 34.0.0.1</span><br><span class="line"></span><br><span class="line">#AR2</span><br><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line"></span><br><span class="line">int g0/0/1</span><br><span class="line">ip add 3.0.0.1 24</span><br><span class="line"></span><br><span class="line">int g0/0/0</span><br><span class="line">ip add 12.0.0.1 24</span><br><span class="line">int g0/0/2</span><br><span class="line">ip addr 34.0.0.1 24</span><br><span class="line"></span><br><span class="line">ip route-s 1.0.0.0 24 12.0.0.2</span><br><span class="line">ip route-s 1.0.0.0 24 34.0.0.2</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C2021%5C0701%5C06.png" alt="01"></p>
+<p><img src="/images/2021/0701/06.png" alt="01"></p>
 <p>负载路由ping测试</p>
-<p><img src="/%5Cimages%5C2021%5C0701%5C03.png" alt="01"></p>
+<p><img src="/images/2021/0701/03.png" alt="01"></p>
 <p>负载路由tracert测试</p>
-<p><img src="/%5Cimages%5C2021%5C0701%5C04.png" alt="01"></p>
+<p><img src="/images/2021/0701/04.png" alt="01"></p>
 <h1 id="路由备份-浮动静态路由"><a href="#路由备份-浮动静态路由" class="headerlink" title="路由备份-浮动静态路由"></a>路由备份-浮动静态路由</h1><ul>
 <li>利用优先级的特性，配置浮动路由</li>
 <li>在主路由失效的情况下，浮动路由会加入到路由表并承担数据转发业务</li>
 </ul>
-<p><img src="/%5Cimages%5C2021%5C0701%5C07.png" alt="01"></p>
+<p><img src="/images/2021/0701/07.png" alt="01"></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">- #AR1</span><br><span class="line">sys</span><br><span class="line">sys R1</span><br><span class="line">int g0/0/0</span><br><span class="line">ip add 1.0.0.1 24</span><br><span class="line"></span><br><span class="line">int g0/0/1</span><br><span class="line">ip add 34.0.0.2 24</span><br><span class="line"></span><br><span class="line">int g0/0/2</span><br><span class="line">ip add 12.0.0.2 24</span><br><span class="line">ip route-s 3.0.0.0 24 12.0.0.1</span><br><span class="line">ip route-s 3.0.0.0 24 34.0.0.1 preference 100</span><br><span class="line"></span><br><span class="line">#AR2</span><br><span class="line">sys</span><br><span class="line">sys R2</span><br><span class="line"></span><br><span class="line">int g0/0/1</span><br><span class="line">ip add 3.0.0.1 24</span><br><span class="line"></span><br><span class="line">int g0/0/0</span><br><span class="line">ip add 12.0.0.1 24</span><br><span class="line">int g0/0/2</span><br><span class="line">ip addr 34.0.0.1 24</span><br><span class="line">ip route-s 1.0.0.0 24 12.0.0.2 </span><br><span class="line">ip route-s 1.0.0.0 24 34.0.0.2 preference 100</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C2021%5C0701%5C05.png" alt="01"></p>
+<p><img src="/images/2021/0701/05.png" alt="01"></p>
 <h1 id="回环口Loopback"><a href="#回环口Loopback" class="headerlink" title="回环口Loopback"></a>回环口Loopback</h1><p>回环口作用</p>
 <ul>
 <li>模拟直连网段，可用于测试</li>

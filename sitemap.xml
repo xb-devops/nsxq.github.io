@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://islocal.cc/arlo/bc8a509a/</loc>
+    
+    <lastmod>2022-12-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://islocal.cc/arlo/65cdd712/</loc>
     
     <lastmod>2022-12-20</lastmod>
@@ -86,15 +95,6 @@
     <loc>http://islocal.cc/arlo/1ace6b3c/</loc>
     
     <lastmod>2022-11-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://islocal.cc/arlo/bc8a509a/</loc>
-    
-    <lastmod>2022-09-08</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

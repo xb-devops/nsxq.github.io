@@ -2378,10 +2378,10 @@ abbrlink:
 <li>启动显示grub损坏界面，首先要猜测boot分区，一般来说，boot分区是安装操作系统时候划分的第一个分区，猜测为（hd0,0）（sd0,0）</li>
 <li>猜测boot名称，标准分区一般为&#x2F;dev&#x2F;sda1, lvm如果没有特特殊定，一般为 &#x2F;dev&#x2F;mapper&#x2F;VolGroup-lv_root</li>
 </ol>
-<p><img src="/%5Cimages%5C2020%5C1201%5C09.png" alt="01"></p>
+<p><img src="/images/2020/1201/09.png" alt="01"></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">grub&gt; root (hd0,0)</span><br><span class="line">grub&gt; kernel /vmlinuz-2.6.32-696.el6.x86-64 ro root=/dev/mapper/VolGroup-lv_root</span><br><span class="line">grub&gt; initrd /initramfs-2.6.32-696.el6.x86-64.img</span><br><span class="line">grub&gt; boot</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C2020%5C1201%5C10.png" alt="01"></p>
+<p><img src="/images/2020/1201/10.png" alt="01"></p>
 <ol start="3">
 <li>进入系统后，新建一个&#x2F;boot&#x2F;grub&#x2F;grub.conf文件，内容如下</li>
 </ol>
@@ -2389,12 +2389,12 @@ abbrlink:
 
 <p>最简单的方法就是找到相同方式安装的服务器，直接copy一个过来~</p>
 <h1 id="CentOS-7-x"><a href="#CentOS-7-x" class="headerlink" title="CentOS 7.x"></a>CentOS 7.x</h1><p>centos 7.x 使用的是grub2，方法更加简单方便。</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C11.png" alt="01"></p>
+<p><img src="/images/2020/1201/11.png" alt="01"></p>
 <p>挂载镜像，从光驱引导启动，选择“Troubleshooting（故障排错）”</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C12.png" alt="01"></p>
+<p><img src="/images/2020/1201/12.png" alt="01"></p>
 <p>选择“Recuse a CentOS System”</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C13.png" alt="01"></p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C14.png" alt="01"></p>
+<p><img src="/images/2020/1201/13.png" alt="01"></p>
+<p><img src="/images/2020/1201/14.png" alt="01"></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Grub2 用到的命令如下:</span><br><span class="line">chroot /mnt/sysimage</span><br><span class="line">grub2-install /dev/sda</span><br><span class="line">grub2-mkconfig -o /boot/grub2/grub.cfg</span><br><span class="line">exit</span><br><span class="line">reboot</span><br><span class="line"></span><br><span class="line">早期非 grub2 用到的命令如下:</span><br><span class="line">chroot /mnt/sysroot</span><br><span class="line">grub-install /dev/sda</span><br><span class="line">grub-mkconfig -o /boot/grub/grub.cfg</span><br><span class="line">exit</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
 
 
@@ -2420,21 +2420,21 @@ abbrlink:
 <li><p>进入到grub启动界面</p>
 </li>
 <li><p>按字母e编辑grub启动项</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C01.png" alt="01"></p>
+<p><img src="/images/2020/1201/01.png" alt="01"></p>
 </li>
 <li><p>按键盘上下键选择第2行，再次按字母e进入编辑模式</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C02.png" alt="01"></p>
+<p><img src="/images/2020/1201/02.png" alt="01"></p>
 </li>
 <li><p>移动光标到行末，输入数字1&#x2F;大写字母S&#x2F;Single 都可以进入单用户模式</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C03.png" alt="01"></p>
+<p><img src="/images/2020/1201/03.png" alt="01"></p>
 </li>
 <li><p>按enter键返回</p>
 </li>
 <li><p>按字母b启动</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C04.png" alt="01"></p>
+<p><img src="/images/2020/1201/04.png" alt="01"></p>
 </li>
 <li><p>进入单用户模式，修改root密码</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C05.png" alt="01"></p>
+<p><img src="/images/2020/1201/05.png" alt="01"></p>
 </li>
 </ol>
 <h1 id="CentOS-7-x"><a href="#CentOS-7-x" class="headerlink" title="CentOS 7.x"></a>CentOS 7.x</h1><ol>
@@ -2443,14 +2443,14 @@ abbrlink:
 <li><p>进入到grub启动界面</p>
 </li>
 <li><p>按字母e编辑grub启动项</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C06.png" alt="02"></p>
+<p><img src="/images/2020/1201/06.png" alt="02"></p>
 </li>
 <li><p>将光标移动到 linux16 这一行，将 ro 修改为 rw init&#x3D;sysroot&#x2F;bin&#x2F;sh, 然后按 ctrl+x</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C07.png" alt="02"></p>
+<p><img src="/images/2020/1201/07.png" alt="02"></p>
 </li>
 <li><p>切换根目录 chroot &#x2F;sysroot</p>
 <p>修改密码<br>touch &#x2F;.autorelabel（ 新建 &#x2F;.autorelabel 文件 , 否则重启之后密码未生效 ）<br>再输入 exec &#x2F;sbin&#x2F;init 进行重启（直接 reboot 会卡主，只能强行重启了…）</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C08.png" alt="02"></p>
+<p><img src="/images/2020/1201/08.png" alt="02"></p>
 </li>
 </ol>
 ]]></content>
@@ -3110,29 +3110,29 @@ abbrlink:
 <span id="more"></span>
 
 <h1 id="模拟故障场景"><a href="#模拟故障场景" class="headerlink" title="模拟故障场景"></a>模拟故障场景</h1><p>删除&#x2F;etc&#x2F;fstab、&#x2F;boot 分区文件，然后重启服务器</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C16.png" alt="03"></p>
+<p><img src="/images/2020/1201/16.png" alt="03"></p>
 <p>重启后故障现象如下</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C17.png" alt="03"></p>
+<p><img src="/images/2020/1201/17.png" alt="03"></p>
 <h1 id="恢复chroot"><a href="#恢复chroot" class="headerlink" title="恢复chroot"></a>恢复chroot</h1><p>我们挂载 iso 镜像（插入系统光盘），进入到救援模式</p>
 <p>由于我们把&#x2F;etc&#x2F;fstab 删除了，所以救援系统找不到原来系统的路径了，我们熟悉的 chroot &#x2F;mnt&#x2F;sysimage 选项提示不见了，所以我们要先恢复&#x2F;etc&#x2F;fstab 文件</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C18.png" alt="03"></p>
+<p><img src="/images/2020/1201/18.png" alt="03"></p>
 <h1 id="恢复磁盘"><a href="#恢复磁盘" class="headerlink" title="恢复磁盘"></a>恢复磁盘</h1><h2 id="查看磁盘信息"><a href="#查看磁盘信息" class="headerlink" title="查看磁盘信息"></a>查看磁盘信息</h2><p>我们使用 blkid 命令，可以查看到磁盘信息，默认的&#x2F;dev&#x2F;sda1 为&#x2F;boot 分区，看不到 lvm 逻辑卷的存在</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C19.png" alt="03"></p>
+<p><img src="/images/2020/1201/19.png" alt="03"></p>
 <h2 id="激活逻辑卷"><a href="#激活逻辑卷" class="headerlink" title="激活逻辑卷"></a>激活逻辑卷</h2><p>我们查看一下逻辑卷的状态，都是非激活状态的，我们手动激活一下</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C20.png" alt="03"></p>
+<p><img src="/images/2020/1201/20.png" alt="03"></p>
 <p>lvscan 查看逻辑卷的状态，此时显示为非激活状态。vgchange -ay 激活所有逻辑卷</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C21.png" alt="03"></p>
+<p><img src="/images/2020/1201/21.png" alt="03"></p>
 <p>再次查看 lvm 逻辑卷的状态，已经由 INACTIVE（非激活状态）变成 ACTIVE（激活状态）了。</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C22.png" alt="03"></p>
+<p><img src="/images/2020/1201/22.png" alt="03"></p>
 <h1 id="恢复-x2F-etc-x2F-fstab-文件"><a href="#恢复-x2F-etc-x2F-fstab-文件" class="headerlink" title="恢复&#x2F;etc&#x2F;fstab 文件"></a>恢复&#x2F;etc&#x2F;fstab 文件</h1><p>再次 blkid 查看磁盘状态的时候，发现 swap 和&#x2F;分区的逻辑卷已经出现了；新建一个&#x2F;mnt&#x2F;tmp 目录，将&#x2F;分区挂载到&#x2F;mnt&#x2F;tmp 目录下，然后使用 blkid 命令将输出信息导入到&#x2F;mnt&#x2F;tmp&#x2F;etc&#x2F;fstab 文件中，然后进行编辑</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C23.png" alt="03"></p>
+<p><img src="/images/2020/1201/23.png" alt="03"></p>
 <p>编辑完成的内容如下</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C24.png" alt="03"></p>
+<p><img src="/images/2020/1201/24.png" alt="03"></p>
 <h2 id="重启之后再次引导到救援模式"><a href="#重启之后再次引导到救援模式" class="headerlink" title="重启之后再次引导到救援模式"></a>重启之后再次引导到救援模式</h2><p>这里就可以看到提示，可以 chroot &#x2F;mnt&#x2F;sysimage 了，然后我们挂载一下 iso 光驱镜像文件，强行安装（ 虽然我们把 &#x2F;boot 目录下的文件删除了，但是系统里的 kernel 包是已经安装的状态，直接安装的话，会提示已经安装了，我们加一个 —force 参数，表示覆盖安装 ）内核 kernel 文件，然后就可以看到&#x2F;boot 目录下已经有文件产生了</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C25.png" alt="03"></p>
+<p><img src="/images/2020/1201/25.png" alt="03"></p>
 <h1 id="恢复grub"><a href="#恢复grub" class="headerlink" title="恢复grub"></a>恢复grub</h1><p>我们在用之前学过的方法，恢复一下 grub.conf 文件就可以了。</p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C26.png" alt="03"></p>
-<p><img src="/%5Cimages%5C2020%5C1201%5C27.png" alt="03"></p>
+<p><img src="/images/2020/1201/26.png" alt="03"></p>
+<p><img src="/images/2020/1201/27.png" alt="03"></p>
 <p>可以正常启动到登录界面了，恢复完成！！！</p>
 ]]></content>
       <categories>

@@ -2513,28 +2513,28 @@ abbrlink:
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# docker search tomcat -s 50</span><br><span class="line">Flag --stars has been deprecated, use --filter=stars=3 instead</span><br><span class="line">NAME                DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED</span><br><span class="line">tomcat              Apache Tomcat is an open source implementati…   2637                [OK]                </span><br><span class="line">tomee               Apache TomEE is an all-Apache Java EE certif…   74                  [OK]                </span><br><span class="line">dordoka/tomcat      Ubuntu 14.04, Oracle JDK 8 and Tomcat 8 base…   53                                      [OK]</span><br><span class="line">                                    </span><br><span class="line">NAME：镜像名称</span><br><span class="line">DESCRIPTION：镜像描述</span><br><span class="line">STARS：点赞数</span><br><span class="line">OFFICIAL：官方镜像</span><br><span class="line">AUTOMATED：自动更新</span><br></pre></td></tr></table></figure>
 
 <h2 id="拉取镜像dockerpull"><a href="#拉取镜像dockerpull" class="headerlink" title="拉取镜像dockerpull"></a>拉取镜像dockerpull</h2><p>下载镜像 **docker pull 镜像名称[:TAG]**，如果不指定TAG，默认为lastest</p>
-<h2 id="删除镜像docker-rmi"><a href="#删除镜像docker-rmi" class="headerlink" title="删除镜像docker rmi"></a>删除镜像docker rmi</h2><p>删除镜像：	docker rmi  镜像名称&#x2F;镜像ID</p>
-<p>删除单个镜像：	docker rmi -f 镜像名称&#x2F;镜像ID</p>
-<p>删除多个镜像：	docker rmi -f 镜像名称1:TAG&#x2F;镜像ID1[空格]镜像名称2:TAG&#x2F;镜像ID2</p>
-<p>删除全部镜像：	docker rmi -f $(docker images -qa)</p>
+<h2 id="删除镜像docker-rmi"><a href="#删除镜像docker-rmi" class="headerlink" title="删除镜像docker rmi"></a>删除镜像docker rmi</h2><p><strong>删除镜像：</strong>	docker rmi  镜像名称&#x2F;镜像ID</p>
+<p><strong>删除单个镜像：</strong>	docker rmi -f 镜像名称&#x2F;镜像ID</p>
+<p><strong>删除多个镜像：</strong>	docker rmi -f 镜像名称1:TAG&#x2F;镜像ID1[空格]镜像名称2:TAG&#x2F;镜像ID2</p>
+<p><strong>删除全部镜像：</strong>	docker rmi -f $(docker images -qa)</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">删除镜像</span><br><span class="line">[root@localhost ~]# docker rmi hello-world</span><br><span class="line">Error response from daemon: conflict: unable to remove repository reference &quot;hello-world&quot; (must force) - container c0c56d69276d is using its referenced image fce289e99eb9</span><br><span class="line">强行删除镜像</span><br><span class="line">[root@localhost ~]# docker rmi -f fce289e99eb9</span><br><span class="line">Untagged: hello-world:latest</span><br><span class="line">Untagged: hello-world@sha256:9572f7cdcee8591948c2963463447a53466950b3fc15a247fcad1917ca215a2f</span><br><span class="line">Deleted: sha256:fce289e99eb9bca977dae136fbe2a82b6b7d4c372474c9235adc1741675f587e</span><br><span class="line">删除多个镜像</span><br><span class="line">[root@localhost ~]# docker rmi -f hello-world nginx</span><br><span class="line">Untagged: hello-world:latest</span><br><span class="line">Untagged: hello-world@sha256:9572f7cdcee8591948c2963463447a53466950b3fc15a247fcad1917ca215a2f</span><br><span class="line">Deleted: sha256:fce289e99eb9bca977dae136fbe2a82b6b7d4c372474c9235adc1741675f587e</span><br><span class="line">Untagged: nginx:latest</span><br><span class="line">Untagged: nginx@sha256:ad5552c786f128e389a0263104ae39f3d3c7895579d45ae716f528185b36bc6f</span><br><span class="line">Deleted: sha256:2073e0bcb60ee98548d313ead5eacbfe16d9054f8800a32bedd859922a99a6e1</span><br><span class="line">Deleted: sha256:a3136fbf38691346715cac8360bcdfca0fff812cede416469653670f04e2cab0</span><br><span class="line">Deleted: sha256:99360ffcb2da18fd9ede194efaf5d4b90e7aee99f45737e918113e6833dcf278</span><br><span class="line">Deleted: sha256:488dfecc21b1bc607e09368d2791cb784cf8c4ec5c05d2952b045b3e0f8cc01e</span><br></pre></td></tr></table></figure>
 
 <h1 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h1><h2 id="新建并启动容器"><a href="#新建并启动容器" class="headerlink" title="新建并启动容器"></a>新建并启动容器</h2><p>启动容器必须有一个镜像，如果本地有镜像就从本地启动，如果本地没有则先去镜像站点拉取镜像然后启动，并保存镜像到本地；</p>
 <p><strong>docker run 镜像名称</strong>   </p>
-<p>–name&#x3D;”容器新名字”：为容器指定一个名称；</p>
-<p>-d：后台运行容器，并返回容器ID，即启动守护式容器；</p>
-<p>-i：已交互模式运行容器，通常与-t同时使用；</p>
+<p><strong>–name&#x3D;”容器新名字”：</strong>为容器指定一个名称；</p>
+<p><strong>-d：</strong>后台运行容器，并返回容器ID，即启动守护式容器；</p>
+<p><strong>-i：</strong>已交互模式运行容器，通常与-t同时使用；</p>
 <p>-t：为容器重新分配一个伪输入终端，通常与-i同时使用；</p>
-<p>-P：随机端口映射；</p>
-<p>-p：指定端口映射，有以下四种格式  	 ip:hostPort:containerPort  &#x2F;		ip::containerPort  &#x2F;		hostPort:containerPort &#x2F;		containerPort</p>
+<p><strong>-P：</strong>随机端口映射；</p>
+<p><strong>-p：</strong>指定端口映射，有以下四种格式  	 ip:hostPort:containerPort  &#x2F;		ip::containerPort  &#x2F;		hostPort:containerPort &#x2F;		containerPort</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">tomcat              latest              b56d8850aed5        4 days ago          529MB</span><br><span class="line">centos              latest              470671670cac        3 weeks ago         237MB</span><br><span class="line"># 启动交互式容器</span><br><span class="line">[root@localhost ~]# docker run -it --name centos20200211 470671670cac</span><br><span class="line">[root@8ec89289309a /]# pwd</span><br><span class="line">/</span><br><span class="line">[root@8ec89289309a /]# ls</span><br><span class="line">bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</span><br><span class="line">[root@8ec89289309a /]#</span><br><span class="line"># 启动守护式容器</span><br><span class="line">docker run -d </span><br><span class="line"># 启动一个mysql容器</span><br><span class="line">docker run -p 3306:3306 --name db1 -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/logs:/logs -v /data/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=111 -d mysql:5.7.29</span><br></pre></td></tr></table></figure>
 
 <h2 id="列出的容器"><a href="#列出的容器" class="headerlink" title="列出的容器"></a>列出的容器</h2><p>docker ps</p>
-<p>-a： 列出所有的容器，包含已经停止的容器</p>
-<p>-l： 显示最新创建的容器</p>
-<p>-n： 显示最近n次创建的容器</p>
-<p>-q： 静默模式，只显示容器编号</p>
-<p>–no-trunc ：不截断输出</p>
+<p><strong>-a：</strong> 列出所有的容器，包含已经停止的容器</p>
+<p><strong>-l：</strong> 显示最新创建的容器</p>
+<p><strong>-n：</strong> 显示最近n次创建的容器</p>
+<p><strong>-q：</strong> 静默模式，只显示容器编号</p>
+<p><strong>–no-trunc ：</strong>不截断输出</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# docker ps</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES</span><br><span class="line">8ec89289309a        470671670cac        &quot;/bin/bash&quot;         3 minutes ago       Up 3 minutes                            centos20200211</span><br><span class="line">8a5da2a84c74        centos              &quot;/bin/bash&quot;         3 hours ago         Up 3 hours                              centos0211</span><br></pre></td></tr></table></figure>
 
 <h2 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h2><ul>
@@ -2733,8 +2733,6 @@ abbrlink:
 
 <h2 id="删除dc02，测试dc03数据是否可以访问"><a href="#删除dc02，测试dc03数据是否可以访问" class="headerlink" title="删除dc02，测试dc03数据是否可以访问"></a>删除dc02，测试dc03数据是否可以访问</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# docker rm -f dc02</span><br><span class="line">dc02</span><br><span class="line">[root@localhost ~]# docker ps</span><br><span class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES</span><br><span class="line">c409dacf9084        test/centos         &quot;/bin/sh -c /bin/bash&quot;   10 minutes ago      Up 10 minutes                           dc03</span><br><span class="line">[root@localhost ~]# docker attach dc03</span><br><span class="line">[root@c409dacf9084 DataVolumeContainer1]# ls -l</span><br><span class="line">total 0</span><br><span class="line">-rw-r--r-- 1 root root 0 Feb 12 00:02 add_dc01.txt</span><br><span class="line">-rw-r--r-- 1 root root 0 Feb 12 00:09 add_dc02.txt</span><br><span class="line">-rw-r--r-- 1 root root 0 Feb 12 00:10 add_dc03.txt</span><br><span class="line">-rw-r--r-- 1 root root 0 Feb 12 00:13 update_dc02.txt</span><br></pre></td></tr></table></figure>
 
-
-
 <h2 id="新建dc04继承dc03，然后删除dc03"><a href="#新建dc04继承dc03，然后删除dc03" class="headerlink" title="新建dc04继承dc03，然后删除dc03"></a>新建dc04继承dc03，然后删除dc03</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# docker run -it --name dc04 --volumes-from dc03 test/centos</span><br><span class="line">[root@localhost ~]# docker rm -f dc03</span><br><span class="line">dc03</span><br><span class="line">[root@localhost ~]# docker ps </span><br><span class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES</span><br><span class="line">5156e4538e53        test/centos         &quot;/bin/sh -c /bin/bash&quot;   59 seconds ago      Up 58 seconds                           dc04</span><br><span class="line">[root@localhost ~]# docker attach dc04</span><br><span class="line">[root@5156e4538e53 DataVolumeContainer1]# cd /DataVolumeContainer1/</span><br><span class="line">[root@5156e4538e53 DataVolumeContainer1]# ls -l</span><br><span class="line">total 0</span><br><span class="line">-rw-r--r-- 1 root root 0 Feb 12 00:02 add_dc01.txt</span><br><span class="line">-rw-r--r-- 1 root root 0 Feb 12 00:09 add_dc02.txt</span><br><span class="line">-rw-r--r-- 1 root root 0 Feb 12 00:10 add_dc03.txt</span><br><span class="line">-rw-r--r-- 1 root root 0 Feb 12 00:13 update_dc02.txt</span><br></pre></td></tr></table></figure>
 
 <p><strong>结论：容器之间配置信息的传递，数据卷的生命周期一直持续到没有容器使用它为止</strong></p>
@@ -2848,8 +2846,8 @@ abbrlink:
     <content><![CDATA[<p>因项目环境限制，部署环境分为互联网环境（可访问互联网）和政务外网环境（不可访问互联网）；但是因业务需要，需要实现政务外网环境访问访问外网；（原因不究~~~）</p>
 <span id="more"></span>
 
-<p><img src="/%5Cimages%5C2020%5C0812%5C01.png" alt="01"></p>
-<p><img src="/%5Cimages%5C2020%5C0812%5C02.png" alt="02"></p>
+<p><img src="/images/2020/0812/01.png" alt="01"></p>
+<p><img src="/images/2020/0812/02.png" alt="02"></p>
 <h1 id="互联网区Server1-nginx搭建"><a href="#互联网区Server1-nginx搭建" class="headerlink" title="互联网区Server1 nginx搭建"></a>互联网区Server1 nginx搭建</h1><p><strong>ngx_http_proxy_connect_module</strong> ：<a href="https://github.com/chobits/ngx_http_proxy_connect_module">https://github.com/chobits/ngx_http_proxy_connect_module</a></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install gcc gcc-c++ make automake autoconf libtool pcre pcre-devel zlib zlib-devel openssl openssl-devel wget</span><br><span class="line">wget https://nginx.org/download/nginx-1.18.0.tar.gz</span><br><span class="line">wget https://github.com/chobits/ngx_http_proxy_connect_module/archive/master.zip</span><br><span class="line">tar xf nginx-1.18.0.tar.gz </span><br><span class="line">unzip master.zip</span><br><span class="line">cd nginx-1.18.0</span><br><span class="line">patch -p1 &lt; /usr/local/src/ngx_http_proxy_connect_module-master/patch/proxy_connect.patch </span><br><span class="line"></span><br><span class="line"># nginx版本高于1.9.11，可以使用--add-dynamic-module=/path加载动态模块,配置文件里需要load_module模块位置；使用--add-module=PATH编译，配置文件里不用使用load_module指定模块; </span><br><span class="line"></span><br><span class="line">./configure --prefix=/usr/local/nginx-1.18.0  --with-stream --add-dynamic-module=/usr/local/src/ngx_http_proxy_connect_module-master/</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 
@@ -2865,11 +2863,11 @@ abbrlink:
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">worker_processes  1;</span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line">stream &#123;</span><br><span class="line">   upstream proxy1 &#123;   </span><br><span class="line">        server 16.168.135.174:11003 weight=1 max_fails=2 fail_timeout=30s;   </span><br><span class="line">    &#125;</span><br><span class="line">    upstream proxy2 &#123;   </span><br><span class="line">        server 16.168.135.174:11004 weight=1 max_fails=2 fail_timeout=30s;   </span><br><span class="line">    &#125;</span><br><span class="line"> server &#123;</span><br><span class="line">        listen       11003;</span><br><span class="line">        proxy_connect_timeout 1s;</span><br><span class="line">        proxy_timeout 3s;</span><br><span class="line">        proxy_pass proxy1;</span><br><span class="line">   &#125;</span><br><span class="line"> server &#123;</span><br><span class="line">        listen       11004;</span><br><span class="line">        proxy_connect_timeout 1s;</span><br><span class="line">        proxy_timeout 3s;</span><br><span class="line">        proxy_pass proxy2;</span><br><span class="line">	  &#125;</span><br><span class="line">&#125;</span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line">    sendfile        on;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen       11001;</span><br><span class="line">        server_name  localhost;</span><br><span class="line">		location / &#123;</span><br><span class="line">             if ($request_method = &#x27;OPTIONS&#x27;) &#123;</span><br><span class="line">	   			add_header &#x27;Access-Control-Allow-Origin&#x27; *;</span><br><span class="line">            	add_header &#x27;Access-Control-Allow-Credentials&#x27; &#x27;true&#x27;;</span><br><span class="line">           		add_header &#x27;Access-Control-Allow-Methods&#x27; &#x27;GET, POST, PUT, DELETE, OPTIONS&#x27;;</span><br><span class="line">            	add_header &#x27;Access-Control-Allow-Headers&#x27; &#x27;DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,token,timestamp&#x27;;</span><br><span class="line">            	add_header &#x27;Access-Control-Max-Age&#x27; 1728000;</span><br><span class="line">            	add_header &#x27;Content-Type&#x27; &#x27;text/plain charset=UTF-8&#x27;;</span><br><span class="line">            	add_header &#x27;Content-Length&#x27; 0;</span><br><span class="line">           	 return 204;	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">        location /forecast_pic &#123;</span><br><span class="line">	    	proxy_pass http://x.x.x.x:xx1/forecast_pic;</span><br><span class="line">            root   html;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">		location /FJAtmoCompr &#123;</span><br><span class="line">	    	proxy_pass http://x.x.x.x:xx2/FJAtmoCompr;</span><br><span class="line">		&#125;</span><br><span class="line">		location /cdwarn &#123;</span><br><span class="line">	    	proxy_pass http://x.x.x.x:xx3/cdwarn;</span><br><span class="line">		&#125;</span><br><span class="line">        error_page   500 502 503 504  /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="政务外网区-Server3-代理使用测试"><a href="#政务外网区-Server3-代理使用测试" class="headerlink" title="政务外网区 Server3 代理使用测试"></a>政务外网区 Server3 代理使用测试</h1><p><img src="/%5Cimages%5C2020%5C0812%5C03.png" alt="03"></p>
+<h1 id="政务外网区-Server3-代理使用测试"><a href="#政务外网区-Server3-代理使用测试" class="headerlink" title="政务外网区 Server3 代理使用测试"></a>政务外网区 Server3 代理使用测试</h1><p><img src="/images/2020/0812/03.png" alt="03"></p>
 <p>为了长期使用，我们将代理设置为系统环境变量</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim /etc/profile</span><br><span class="line"></span><br><span class="line">export http_proxy=&#x27;16.167.5.198:11003&#x27;</span><br><span class="line">export https_proxy=&#x27;16.167.5.198:11004&#x27;</span><br><span class="line">export ftp_proxy=&#x27;16.167.5.198:11003&#x27;</span><br><span class="line"></span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C2020%5C0812%5C04.png" alt="04"></p>
+<p><img src="/images/2020/0812/04.png" alt="04"></p>
 ]]></content>
       <categories>
         <category>服务器搭建</category>
@@ -2886,7 +2884,7 @@ abbrlink:
 
 <span id="more"></span>
 
-<p><img src="/%5Cimages%5C2020%5C1026%5C01.png" alt="01"></p>
+<p><img src="/images/2020/1026/01.png" alt="01"></p>
 <p>解释如下：</p>
 <p>“The valid characters are defined in RFC 7230 and RFC 3986”错误提示，说明访问地址中出现特殊不符合规范的特殊字符。根据rfc规范（RFC 3986规范定义了Url中只允许包含英文字母（a-zA-Z）、数字（0-9）、-_.~4个特殊字符以及所有保留字符(RFC3986中指定了以下字符为保留字符：! * ’ ( ) ; : @ &amp; &#x3D; + $ , &#x2F; ? # [ ])）,当在URL中使用保留字符时，需要对保留字符进行转义。【详见<a href="https://ningyu1.github.io/blog/20190626/117-tomcat-RFC3986.html%E3%80%91">https://ningyu1.github.io/blog/20190626/117-tomcat-RFC3986.html】</a></p>
 <p>tomcat从特定版本开始进行了特殊字符校验，Tomcat 7.0.73+，Tomcat 8.0.39+，Tomcat 8.5.7+，Tomcat 9.0.0.M12 (markt)+,因为大多数浏览器并不会对这些保留字符进行转义，所以tomcat会拒绝这些请求，为此tomcat提供了属性配置：relaxedQueryChars,可以支持” &lt; &gt; [ \ ] ^ &#96; { | }这11个字符的访问</p>
@@ -2942,13 +2940,13 @@ abbrlink:
 <p>zabbix4.4.8默认安装的php是5.4.16</p>
 <span id="more"></span>
 
-<h1 id="查看php版本"><a href="#查看php版本" class="headerlink" title="查看php版本"></a>查看php版本</h1><p><img src="/%5Cimages%5C2020%5C0602%5C01.png" alt="01"></p>
+<h1 id="查看php版本"><a href="#查看php版本" class="headerlink" title="查看php版本"></a>查看php版本</h1><p><img src="/images/2020/0602/01.png" alt="01"></p>
 <h1 id="升级php版本"><a href="#升级php版本" class="headerlink" title="升级php版本"></a>升级php版本</h1><p><code>rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</code></p>
 <p><code>rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-7.rpm</code></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat &lt;&lt;EOF&gt; /etc/yum.repos.d/remi.repo</span><br><span class="line">[remi]</span><br><span class="line">name=Remi&#x27;s RPM repository for Enterprise Linux 7 - $basearch</span><br><span class="line">#baseurl=http://rpms.remirepo.net/enterprise/7/remi/$basearch/</span><br><span class="line">#mirrorlist=https://rpms.remirepo.net/enterprise/7/remi/httpsmirror</span><br><span class="line">mirrorlist=http://cdn.remirepo.net/enterprise/7/remi/mirror</span><br><span class="line">enabled=0</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi</span><br><span class="line">EOF</span><br><span class="line">cat &lt;&lt;EOF&gt; /etc/yum.repos.d/remi-php73.repo</span><br><span class="line">[remi-php73]</span><br><span class="line">name=Remi&#x27;s PHP 7.3 RPM repository for Enterprise Linux 7 - $basearch</span><br><span class="line">#baseurl=http://rpms.remirepo.net/enterprise/7/php73/$basearch/</span><br><span class="line">mirrorlist=https://rpms.remirepo.net/enterprise/7/php73/httpsmirror</span><br><span class="line">mirrorlist=http://cdn.remirepo.net/enterprise/7/php73/mirror</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
 
 <p><code>yum -y upgrade php*</code></p>
-<h1 id="验证php版本"><a href="#验证php版本" class="headerlink" title="验证php版本"></a>验证php版本</h1><p><img src="/%5Cimages%5C2020%5C0602%5C02.png" alt="01"></p>
+<h1 id="验证php版本"><a href="#验证php版本" class="headerlink" title="验证php版本"></a>验证php版本</h1><p><img src="/images/2020/0602/02.png" alt="01"></p>
 ]]></content>
       <categories>
         <category>监控</category>
@@ -2976,18 +2974,18 @@ abbrlink:
 
 <p><code>systemctl restart zabbix-server</code></p>
 <p><code>systemctl status zabbix-server</code></p>
-<p><img src="/%5Cimages%5C2020%5C0515%5C01.png" alt="01"></p>
-<h1 id="添加vCenter"><a href="#添加vCenter" class="headerlink" title="添加vCenter"></a>添加vCenter</h1><p><img src="/%5Cimages%5C2020%5C0515%5C02.png" alt="01"></p>
+<p><img src="/images/2020/0515/01.png" alt="01"></p>
+<h1 id="添加vCenter"><a href="#添加vCenter" class="headerlink" title="添加vCenter"></a>添加vCenter</h1><p><img src="/images/2020/0515/02.png" alt="01"></p>
 <p>关联模板</p>
-<p><img src="/%5Cimages%5C2020%5C0515%5C03.png" alt="01"></p>
+<p><img src="/images/2020/0515/03.png" alt="01"></p>
 <p>点击宏，添加以下内容</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;$USERNAME&#125;：vcenter超管</span><br><span class="line">&#123;$PASSWORD&#125;：vcenter超管密码</span><br><span class="line">&#123;$URL&#125;：https://vcenterip/sdk</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C2020%5C0515%5C04.png" alt="01"></p>
+<p><img src="/images/2020/0515/04.png" alt="01"></p>
 <h1 id="自动发现"><a href="#自动发现" class="headerlink" title="自动发现"></a>自动发现</h1><p>点击vcenter主机-自动发现规则-勾选自动发现规则-点击现在检查</p>
-<p><img src="/%5Cimages%5C2020%5C0515%5C05.png" alt="01"></p>
-<p><img src="/%5Cimages%5C2020%5C0515%5C06.png" alt="01"></p>
-<p><img src="/%5Cimages%5C2020%5C0515%5C07.png" alt="01"></p>
+<p><img src="/images/2020/0515/05.png" alt="01"></p>
+<p><img src="/images/2020/0515/06.png" alt="01"></p>
+<p><img src="/images/2020/0515/07.png" alt="01"></p>
 <p>至此，已经实现了对vmware虚拟化平台的监控，但是默认的模板里没有图形和触发器，我还需要继续研究一下。</p>
 <p>可以参考：</p>
 <p><a href="https://www.mr-mao.cn/archives/zabbix-monitor-vcenter-esxi-vm.html">https://www.mr-mao.cn/archives/zabbix-monitor-vcenter-esxi-vm.html</a></p>
@@ -3011,16 +3009,16 @@ abbrlink:
 
 <h1 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h1><p>系统管理–&gt;插件管理–&gt;可选插件–&gt;Role-based Authorization Strategy–&gt;直接安装然后重启jenkins</p>
 <h1 id="新建用户"><a href="#新建用户" class="headerlink" title="新建用户"></a>新建用户</h1><p>系统管理–&gt;安全–&gt;管理用户–&gt;新建用户</p>
-<p><img src="/%5Cimages%5C2020%5C1109%5C02.jpg" alt="01"></p>
+<p><img src="/images/2020/1109/02.jpg" alt="01"></p>
 <h1 id="配置jenkins"><a href="#配置jenkins" class="headerlink" title="配置jenkins"></a>配置jenkins</h1><p>系统管理–&gt;安全–&gt;全局安全配置–&gt;授权策略–&gt;选择“Role-Based Strategy”</p>
-<p><img src="/%5Cimages%5C2020%5C1109%5C01.png" alt="01"></p>
+<p><img src="/images/2020/1109/01.png" alt="01"></p>
 <h2 id="为角色分配权限"><a href="#为角色分配权限" class="headerlink" title="为角色分配权限"></a>为角色分配权限</h2><p>系统管理–&gt;安全–&gt;Manage and Assign Roles–&gt;Manage Roles</p>
-<p><img src="/%5Cimages%5C2020%5C1109%5C03.png" alt="01"></p>
-<p><img src="/%5Cimages%5C2020%5C1109%5C04.png" alt="01"></p>
+<p><img src="/images/2020/1109/03.png" alt="01"></p>
+<p><img src="/images/2020/1109/04.png" alt="01"></p>
 <p>*<em>Ps：如果需要使用通配符匹配多个，需使用  .</em> **</p>
 <h2 id="为jenkins分配角色"><a href="#为jenkins分配角色" class="headerlink" title="为jenkins分配角色"></a>为jenkins分配角色</h2><p>系统管理–&gt;安全–&gt;Manage and Assign Roles–&gt;Assign Roles</p>
-<p><img src="/%5Cimages%5C2020%5C1109%5C05.jpg" alt="01"></p>
-<h1 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h1><p><img src="/%5Cimages%5C2020%5C1109%5C06.jpg" alt="01"></p>
+<p><img src="/images/2020/1109/05.jpg" alt="01"></p>
+<h1 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h1><p><img src="/images/2020/1109/06.jpg" alt="01"></p>
 <p>参考：<a href="https://www.cnblogs.com/cyleon/p/11046521.html">https://www.cnblogs.com/cyleon/p/11046521.html</a></p>
 ]]></content>
       <categories>
@@ -3048,23 +3046,23 @@ abbrlink:
 <p><code> chmod +x sendSMS.sh</code></p>
 <p><code>./sendSMS.sh 18xxxxxxxxx &quot;&quot; &quot;test zabbix sendmail&quot;</code></p>
 <p>手机可以正常收到。</p>
-<h1 id="配置zabbix"><a href="#配置zabbix" class="headerlink" title="配置zabbix"></a>配置zabbix</h1><h2 id="管理-报警媒介类型-创建媒体类型"><a href="#管理-报警媒介类型-创建媒体类型" class="headerlink" title="管理-报警媒介类型-创建媒体类型"></a>管理-报警媒介类型-创建媒体类型</h2><p><img src="/%5Cimages%5C2020%5C0611%5C01.png" alt="01"></p>
-<p><img src="/%5Cimages%5C2020%5C0611%5C02.png" alt="01"></p>
+<h1 id="配置zabbix"><a href="#配置zabbix" class="headerlink" title="配置zabbix"></a>配置zabbix</h1><h2 id="管理-报警媒介类型-创建媒体类型"><a href="#管理-报警媒介类型-创建媒体类型" class="headerlink" title="管理-报警媒介类型-创建媒体类型"></a>管理-报警媒介类型-创建媒体类型</h2><p><img src="/images/2020/0611/01.png" alt="01"></p>
+<p><img src="/images/2020/0611/02.png" alt="01"></p>
 <p>脚本参数</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">名称：sendSMS</span><br><span class="line">类型：脚本</span><br><span class="line">脚本名称：sendSMS.sh</span><br><span class="line">添加以下3个参数，分别对应sendSMS.sh脚本需要的3个参数</span><br><span class="line">收短信电话号码:&#123;ALERT.SENDTO&#125;</span><br><span class="line">主题:&#123;ALERT.SUBJECT&#125;	#好像没什么用</span><br><span class="line">短信内容:&#123;ALERT.MESSAGE&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="设置用户报警媒介"><a href="#设置用户报警媒介" class="headerlink" title="设置用户报警媒介"></a>设置用户报警媒介</h2><p><img src="/%5Cimages%5C2020%5C0611%5C03.png" alt="01"></p>
-<p><img src="/%5Cimages%5C2020%5C0611%5C04.png" alt="01"></p>
-<p><img src="/%5Cimages%5C2020%5C0611%5C05.png" alt="01"></p>
-<h2 id="触发告警器"><a href="#触发告警器" class="headerlink" title="触发告警器"></a>触发告警器</h2><p><img src="/%5Cimages%5C2020%5C0611%5C06.png" alt="01"></p>
-<p><img src="/%5Cimages%5C2020%5C0611%5C07.png" alt="01"></p>
+<h2 id="设置用户报警媒介"><a href="#设置用户报警媒介" class="headerlink" title="设置用户报警媒介"></a>设置用户报警媒介</h2><p><img src="/images/2020/0611/03.png" alt="01"></p>
+<p><img src="/%5Cimages%5C2020%5C0611/04.png" alt="01"></p>
+<p><img src="/images/2020/0611/05.png" alt="01"></p>
+<h2 id="触发告警器"><a href="#触发告警器" class="headerlink" title="触发告警器"></a>触发告警器</h2><p><img src="/images/2020/0611/06.png" alt="01"></p>
+<p><img src="/images/2020/0611/07.png" alt="01"></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">默认接收人:藏_故障&#123;TRIGGER.STATUS&#125;:服务器 &#123;HOSTNAME1&#125;:&#123;TRIGGER.NAME&#125;</span><br><span class="line">默认信息:</span><br><span class="line">告警主机:&#123;HOSTNAME1&#125;</span><br><span class="line">告警时间:&#123;EVENT.DATE&#125; &#123;EVENT.TIME&#125;</span><br><span class="line">告警等级:&#123;TRIGGER.SEVERITY&#125;</span><br><span class="line">告警信息: &#123;TRIGGER.NAME&#125;</span><br><span class="line">告警项目:&#123;TRIGGER.KEY1&#125;</span><br><span class="line">问题详情:&#123;ITEM.NAME&#125;:&#123;ITEM.VALUE&#125;</span><br><span class="line">当前状态:&#123;TRIGGER.STATUS&#125;:&#123;ITEM.VALUE1&#125;</span><br><span class="line">事件ID:&#123;EVENT.ID&#125;</span><br><span class="line">请至Montoring-Events中查看详细情况。</span><br></pre></td></tr></table></figure>
 
-<p><img src="/%5Cimages%5C2020%5C0611%5C08.png" alt="01"></p>
+<p><img src="/images/2020/0611/08.png" alt="01"></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">默认接收人:藏_故障&#123;TRIGGER.STATUS&#125;:服务器 &#123;HOSTNAME1&#125;:&#123;TRIGGER.NAME&#125;</span><br><span class="line">告警主机:&#123;HOSTNAME1&#125;</span><br><span class="line">告警时间:&#123;EVENT.DATE&#125; &#123;EVENT.TIME&#125;</span><br><span class="line">告警等级:&#123;TRIGGER.SEVERITY&#125;</span><br><span class="line">告警信息: &#123;TRIGGER.NAME&#125;</span><br><span class="line">告警项目:&#123;TRIGGER.KEY1&#125;</span><br><span class="line">问题详情:&#123;ITEM.NAME&#125;:&#123;ITEM.VALUE&#125;</span><br><span class="line">当前状态:&#123;TRIGGER.STATUS&#125;:&#123;ITEM.VALUE1&#125;</span><br><span class="line">事件ID:&#123;EVENT.ID&#125;</span><br><span class="line">报警已恢复，请放松心情。</span><br></pre></td></tr></table></figure>
 
 <h2 id="测试告警"><a href="#测试告警" class="headerlink" title="测试告警"></a>测试告警</h2><p>关闭agent，测试告警</p>
-<p><img src="/%5Cimages%5C2020%5C0611%5C09.png" alt="01"></p>
+<p><img src="/images/2020/0611/09.png" alt="01"></p>
 <p>测试成功。</p>
 <p><em>ps：第二天测试的时候发现短信平台成功发送了，但是手机收不到短信，咨询厂家，怀疑是运营商拦截了。</em></p>
 ]]></content>

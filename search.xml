@@ -9072,9 +9072,43 @@ select * from global_name;
     <content><![CDATA[<p>配置k8s命令tab补全并设置别名</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install -y bash-completion</span><br><span class="line">source /usr/share/bash-completion/bash_completion</span><br><span class="line">source &lt;(kubectl completion bash)</span><br><span class="line">echo &quot;source &lt;(kubectl completion bash)&quot; &gt;&gt; ~/.bashrc</span><br><span class="line"># 设置kubectl别名为k</span><br><span class="line">echo &quot;alias k=kubectl&quot; &gt;&gt; ~/.bashrc</span><br><span class="line">#这句不加的话用kubectl可以使用Tab键自动补全，但是别名k不能使用Tab键自动补全</span><br><span class="line">echo &quot;complete -F __start_kubectl k &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure>
 
+<p><code>source ~/.bashrc</code></p>
 <p>输入“k ge[tab] no[tab]”效果如下</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@k8s-master01 ~]# k get nodes</span><br><span class="line">NAME           STATUS   ROLES           AGE     VERSION</span><br><span class="line">k8s-master01   Ready    control-plane   5d15h   v1.26.3</span><br><span class="line">k8s-master02   Ready    control-plane   5d15h   v1.26.3</span><br><span class="line">k8s-master03   Ready    control-plane   5d15h   v1.26.3</span><br><span class="line">k8s-node01     Ready    &lt;none&gt;          5d15h   v1.26.3</span><br><span class="line">k8s-node02     Ready    &lt;none&gt;          5d15h   v1.26.3</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>DevOps</category>
+      </categories>
+      <tags>
+        <tag>Kubernetes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>K8s标签(label)操作</title>
+    <url>/arlo/3be5dee8/</url>
+    <content><![CDATA[<h1 id="查看所有node节点标签"><a href="#查看所有node节点标签" class="headerlink" title="查看所有node节点标签"></a>查看所有node节点标签</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@k8s-master01 ~]# kubectl get nodes --show-labels</span><br><span class="line">NAME           STATUS   ROLES           AGE     VERSION   LABELS</span><br><span class="line">k8s-master01   Ready    control-plane   6d17h   v1.26.3   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=k8s-master01,kubernetes.io/os=linux,node-role.kubernetes.io/control-plane=,node.kubernetes.io/exclude-from-external-load-balancers=</span><br><span class="line">k8s-master02   Ready    control-plane   6d17h   v1.26.3   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=k8s-master02,kubernetes.io/os=linux,node-role.kubernetes.io/control-plane=,node.kubernetes.io/exclude-from-external-load-balancers=</span><br><span class="line">k8s-master03   Ready    control-plane   6d17h   v1.26.3   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=k8s-master03,kubernetes.io/os=linux,node-role.kubernetes.io/control-plane=,node.kubernetes.io/exclude-from-external-load-balancers=</span><br><span class="line">k8s-node01     Ready    &lt;none&gt;          6d17h   v1.26.3   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=k8s-node01,kubernetes.io/os=linux</span><br><span class="line">k8s-node02     Ready    &lt;none&gt;          6d17h   v1.26.3   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=k8s-node02,kubernetes.io/os=linux</span><br></pre></td></tr></table></figure>
+
+<p>标签操作命令格式***<code>kubectl label nodes &lt;nodename&gt; label_name=label_value</code>***</p>
+<span id="more"></span>
+
+<h1 id="添加标签"><a href="#添加标签" class="headerlink" title="添加标签"></a>添加标签</h1><p>给node节点添加一个磁盘类型为ssd的标签</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@k8s-master01 ~]# kubectl label nodes k8s-node01 k8s-node02 disktype=ssd</span><br><span class="line">node/k8s-node01 labeled</span><br><span class="line">node/k8s-node02 labeled</span><br></pre></td></tr></table></figure>
+
+<h1 id="查看标签"><a href="#查看标签" class="headerlink" title="查看标签"></a>查看标签</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">--查看所有标签</span><br><span class="line">[root@k8s-master01 ~]# kubectl get nodes --show-labels</span><br><span class="line">NAME           STATUS   ROLES           AGE     VERSION   LABELS</span><br><span class="line">k8s-master01   Ready    control-plane   6d17h   v1.26.3   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=k8s-master01,kubernetes.io/os=linux,node-role.kubernetes.io/control-plane=,node.kubernetes.io/exclude-from-external-load-balancers=</span><br><span class="line">k8s-master02   Ready    control-plane   6d17h   v1.26.3   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=k8s-master02,kubernetes.io/os=linux,node-role.kubernetes.io/control-plane=,node.kubernetes.io/exclude-from-external-load-balancers=</span><br><span class="line">k8s-master03   Ready    control-plane   6d17h   v1.26.3   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=k8s-master03,kubernetes.io/os=linux,node-role.kubernetes.io/control-plane=,node.kubernetes.io/exclude-from-external-load-balancers=</span><br><span class="line">k8s-node01     Ready    &lt;none&gt;          6d17h   v1.26.3   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,disktype=ssd,kubernetes.io/arch=amd64,kubernetes.io/hostname=k8s-node01,kubernetes.io/os=linux</span><br><span class="line">k8s-node02     Ready    &lt;none&gt;          6d17h   v1.26.3   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,disktype=ssd,kubernetes.io/arch=amd64,kubernetes.io/hostname=k8s-node02,kubernetes.io/os=linux</span><br><span class="line"></span><br><span class="line">--查看指定标签节点</span><br><span class="line">[root@k8s-master01 ~]# kubectl get nodes -l disktype=ssd</span><br><span class="line">NAME         STATUS   ROLES    AGE     VERSION</span><br><span class="line">k8s-node01   Ready    &lt;none&gt;   6d17h   v1.26.3</span><br><span class="line">k8s-node02   Ready    &lt;none&gt;   6d17h   v1.26.3</span><br></pre></td></tr></table></figure>
+
+<h1 id="删除标签"><a href="#删除标签" class="headerlink" title="删除标签"></a>删除标签</h1><p>删除一个label，只需在命令行最后指定label的key名后跟一个减号相连（（label_name-）即可</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@k8s-master01 ~]# kubectl label nodes k8s-node02 disktype-</span><br><span class="line">node/k8s-node02 unlabeled</span><br><span class="line">可以看到k8s-node02 disktype=ssd标签已经被删除了</span><br><span class="line">[root@k8s-master01 ~]# kubectl get nodes -l disktype</span><br><span class="line">NAME         STATUS   ROLES    AGE     VERSION</span><br><span class="line">k8s-node01   Ready    &lt;none&gt;   6d17h   v1.26.3</span><br></pre></td></tr></table></figure>
+
+<h1 id="修改标签的值"><a href="#修改标签的值" class="headerlink" title="修改标签的值"></a>修改标签的值</h1><p>修改一个label的值，需要加上<code>--overwrite</code>参数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[root@k8s-master01 ~]# kubectl label nodes k8s-node01 disktype=sata --overwrite</span><br><span class="line">node/k8s-node01 labeled</span><br><span class="line">[root@k8s-master01 ~]# kubectl get nodes -l disktype=ssd</span><br><span class="line">No resources found</span><br><span class="line">[root@k8s-master01 ~]# kubectl get nodes -l disktype=sata</span><br><span class="line">NAME         STATUS   ROLES    AGE     VERSION</span><br><span class="line">k8s-node01   Ready    &lt;none&gt;   6d17h   v1.26.3</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>DevOps</category>
+      </categories>
+      <tags>
+        <tag>Kubernetes</tag>
+      </tags>
   </entry>
 </search>

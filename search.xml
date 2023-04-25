@@ -9113,4 +9113,24 @@ select * from global_name;
         <tag>Kubernetes</tag>
       </tags>
   </entry>
+  <entry>
+    <title>VMware虚拟机里搭建Zstack环境，添加物理机报错‘ could not insert &#39;kvm_amd&#39;: Operation not supported stdout’</title>
+    <url>/arlo/29447fff/</url>
+    <content><![CDATA[<h1 id="故障现象"><a href="#故障现象" class="headerlink" title="故障现象"></a>故障现象</h1><p>在Vmware Workstation中安装了Zstack环境，在初始化添加物理机环节报错</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">shell command[sudo PYTHONPATH=/usr/local/zstack/ansible/files/zstacklib timeout 1800 python2 /usr/local/zstack/ansible/kvm.py -i /usr/local/zstack/ansible/hosts --private-key /usr/local/zstack/apache-tomcat-8.5.57/webapps/zstack/WEB-INF/classes/ansible/rsaKeys/id_rsa -e &#x27;&#123; &quot;init&quot;: &quot;true&quot;, &quot;chrony_servers&quot;: &quot;192.168.111.128&quot;, &quot;trusted_host&quot;: &quot;192.168.111.128&quot;, &quot;remote_port&quot;: &quot;22&quot;, &quot;update_packages&quot;: &quot;true&quot;, &quot;host_uuid&quot;: &quot;e308280cbfd540938d1229e59f932c05&quot;, &quot;zstack_root&quot;: &quot;/var/lib/zstack&quot;, &quot;remote_user&quot;: &quot;root&quot;, &quot;hostname&quot;: &quot;192-168-111-128.zstack.org&quot;, &quot;pkg_kvmagent&quot;: &quot;kvmagent-4.4.0.tar.gz&quot;, &quot;post_url&quot;: &quot;http://192.168.111.128:8080/zstack/kvm/ansiblelog/e308280cbfd540938d1229e59f932c05\n&quot;, &quot;remote_pass&quot;: &quot;*****&quot;, &quot;host&quot;: &quot;192.168.111.128&quot;, &quot;pip_url&quot;: &quot;http://192.168.111.128:8080/zstack/static/pypi/simple&quot;, &quot;zstack_repo&quot;: &quot;\&quot;zstack-mn,qemu-kvm-ev-mn\&quot;&quot;, &quot;yum_server&quot;: &quot;192.168.111.128:8080&quot;, &quot;pkg_zstacklib&quot;: &quot;zstacklib-4.4.0.tar.gz&quot; &#125;&#x27;] failed ret code: 1 stderr: ERROR: [ HOST: 192.168.111.128 ] ERROR: change kernel module kvm_amd status to present failed error: modprobe: ERROR: could not insert &#x27;kvm_amd&#x27;: Operation not supported stdout:</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><ol>
+<li>关闭vmware workstation虚拟机</li>
+<li>点击虚拟机-设置-处理器-虚拟化引擎，勾选”虚拟化 Intel VT-x&#x2F;EPT 或 AMD-V&#x2F;RVI(V)”</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Troubleshooting</category>
+      </categories>
+      <tags>
+        <tag>Troubleshooting</tag>
+      </tags>
+  </entry>
 </search>

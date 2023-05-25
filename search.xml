@@ -7365,7 +7365,7 @@ select * from global_name;
   <entry>
     <title>NFS服务搭建及常用操作命令记录</title>
     <url>/arlo/f828840b/</url>
-    <content><![CDATA[<p>NFS 是Network File System的缩写，即网络文件系统。NFS在文件传送或信息传送过程中依赖于RPC协议。(nfs服务器是搭建过程最简单的服务，耶稣说的……）</p>
+    <content><![CDATA[<p>NFS 是Network File System的缩写，即网络文件系统。NFS在文件传送或信息传送过程中依赖于RPC协议。(nfs服务器是搭建过程最简单的服务，鲁迅说的……）</p>
 <h1 id="服务端安装"><a href="#服务端安装" class="headerlink" title="服务端安装"></a>服务端安装</h1><p>安装NFS服务端</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install nfs-utils rpcbind </span><br></pre></td></tr></table></figure>
 
@@ -8521,7 +8521,7 @@ select * from global_name;
 
 <h1 id="常用配置项"><a href="#常用配置项" class="headerlink" title="常用配置项"></a>常用配置项</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 监听地址，默认是127.0.0.1，不允许其他机器访问</span><br><span class="line">bind 192.168.6.143</span><br><span class="line"># 监听端口</span><br><span class="line">port 6379</span><br><span class="line"># 后台启动</span><br><span class="line">daemonize yes</span><br><span class="line"># 设置redis密码</span><br><span class="line">requirepass  n9zxcCynQy#j4du</span><br></pre></td></tr></table></figure>
 
-<h1 id="启动redis"><a href="#启动redis" class="headerlink" title="启动redis"></a>启动redis</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/usr/local/redis-6.2.6/bin/redis-server /usr/local/redis-6.2.6/redis.conf</span><br><span class="line"># 配置开机自启动</span><br><span class="line">echo &quot;/usr/local/redis-6.2.6/bin/redis-server /usr/local/redis-6.2.6/redis.conf&quot; /etc/rc.d/rc.local</span><br><span class="line">chmod +x /etc/rc.d/rc.local</span><br></pre></td></tr></table></figure>
+<h1 id="启动redis"><a href="#启动redis" class="headerlink" title="启动redis"></a>启动redis</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/usr/local/redis-6.2.6/bin/redis-server /usr/local/redis-6.2.6/redis.conf</span><br><span class="line"># 配置开机自启动</span><br><span class="line">echo &quot;/usr/local/redis-6.2.6/bin/redis-server /usr/local/redis-6.2.6/redis.conf&quot; &gt;&gt; /etc/rc.d/rc.local</span><br><span class="line">chmod +x /etc/rc.d/rc.local</span><br></pre></td></tr></table></figure>
 
 <h1 id="清理缓存"><a href="#清理缓存" class="headerlink" title="清理缓存"></a>清理缓存</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 清空当前数据库的所有key</span><br><span class="line">flushdb</span><br><span class="line">#清空整个Redis服务器的所有数据</span><br><span class="line">flushall</span><br><span class="line"></span><br><span class="line">#当前数据库的 key 的数量</span><br><span class="line">dbsize</span><br><span class="line">#查看所有key值</span><br><span class="line">keys *</span><br><span class="line">#切换数据库（默认有16个库，0-15）</span><br><span class="line">select 1</span><br></pre></td></tr></table></figure>
 

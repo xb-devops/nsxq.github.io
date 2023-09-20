@@ -11,6 +11,15 @@
   </url>
   
   <url>
+    <loc>http://islocal.cc/about/index.html</loc>
+    
+    <lastmod>2023-09-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://islocal.cc/arlo/3be5dee8/</loc>
     
     <lastmod>2023-09-20</lastmod>
@@ -59,15 +68,6 @@
     <loc>http://islocal.cc/arlo/c9f6f059/</loc>
     
     <lastmod>2023-05-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://islocal.cc/about/index.html</loc>
-    
-    <lastmod>2023-05-09</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

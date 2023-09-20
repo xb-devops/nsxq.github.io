@@ -9157,6 +9157,8 @@ select * from global_name;
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">kubectl apply -f nginx-deployment.yml</span><br></pre></td></tr></table></figure>
 
+<span id="more"></span>
+
 <h1 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">kubectl get deployment nginx-deployment  		##或者可以写作kubectl get deployment/nginx-deployment</span><br><span class="line">NAME               READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">nginx-deployment   3/3     3            3           5h31m</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">在检查集群中的 Deployment 时，所显示的字段有：</span><br><span class="line"></span><br><span class="line">NAME 列出了名字空间中 Deployment 的名称。</span><br><span class="line">READY 显示应用程序的可用的“副本”数。显示的模式是“就绪个数/期望个数”。</span><br><span class="line">UP-TO-DATE 显示为了达到期望状态已经更新的副本数。</span><br><span class="line">AVAILABLE 显示应用可供用户使用的副本数。</span><br><span class="line">AGE 显示应用程序运行的时间。</span><br><span class="line">请注意期望副本数是根据 .spec.replicas 字段设置 3。</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#查看deployment详细描述信息</span><br><span class="line">kubectl describe deployment nginx-deployment</span><br></pre></td></tr></table></figure>

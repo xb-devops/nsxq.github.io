@@ -8972,6 +8972,10 @@ select * from global_name;
 <h1 id="批量服务器时间同步"><a href="#批量服务器时间同步" class="headerlink" title="批量服务器时间同步"></a>批量服务器时间同步</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">#不连续ip地址可以使用数组的方式生成</span><br><span class="line">#list=(50 60 70 80)</span><br><span class="line">#for i in $&#123;list[@]&#125;;</span><br><span class="line">#连续的ip地址可以使用seq列表的方式生成</span><br><span class="line">for i in `seq 1 254`</span><br><span class="line">do </span><br><span class="line">    ip=192.168.111.$i</span><br><span class="line">    ping -c1 $ip &amp;&gt; /dev/null</span><br><span class="line">    if [ $? -eq 0 ]; then</span><br><span class="line">        echo &quot;$ip is up~&quot;</span><br><span class="line">        sshpass -p password ssh -o StrictHostKeyChecking=no root@$ip &quot;yum -y install chrony &amp;&amp; sed -i &#x27;/server / s/^\(.*\)$/#\1/g&#x27; /etc/chrony.conf &amp;&amp; echo &#x27;server 192.168.111.128 iburst&#x27; &gt;&gt; /etc/chrony.conf &amp;&amp; systemctl restart chronyd &amp;&amp; systemctl enable chronyd&quot;</span><br><span class="line">    else </span><br><span class="line">        echo &quot;$ip is down.&quot;</span><br><span class="line">    fi</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <tags>
+        <tag>chrony</tag>
+        <tag>时间</tag>
+      </tags>
   </entry>
   <entry>
     <title>麒麟V10 grub修复</title>
@@ -9179,6 +9183,21 @@ select * from global_name;
       </categories>
       <tags>
         <tag>Kubernetes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot项目，访问验证码出现Handler dispatch failed: java.lang.InternalError: java.lang.reflect.InvocationTargetException </title>
+    <url>/arlo/d8c02aa3/</url>
+    <content><![CDATA[<h1 id="报错信息"><a href="#报错信息" class="headerlink" title="报错信息"></a>报错信息</h1><p>部署Springboot 人人框架时候，访问验证码看到返回状态码为200，但是页面无法正常显示，查看后台日志，发现报错如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2023-10-23T13:15:56.314+08:00 ERROR 26705 --- [nio-8082-exec-1] c.l.c.log.exception.RenExceptionHandler  : Handler dispatch failed: java.lang.InternalError: java.lang.reflect.InvocationTargetException</span><br><span class="line"></span><br><span class="line">jakarta.servlet.ServletException: Handler dispatch failed: java.lang.InternalError: java.lang.reflect.InvocationTargetException</span><br><span class="line">	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1096)</span><br><span class="line">	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974)</span><br><span class="line">	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011)</span><br><span class="line">	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)</span><br><span class="line">	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)</span><br><span class="line">	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)</span><br><span class="line">	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)</span><br><span class="line">	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)</span><br><span class="line">	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)</span><br><span class="line">	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)</span><br><span class="line">	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)</span><br><span class="line">	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)</span><br><span class="line">	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)</span><br><span class="line">	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)</span><br><span class="line">	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)</span><br><span class="line">	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)</span><br><span class="line">	at org.springframework.security.web.ObservationFilterChainDecorator$FilterObservation$SimpleFilterObservation.lambda$wrap$1(ObservationFilterChainDecorator.java:479)</span><br><span class="line">	……</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h1 id="解决方式"><a href="#解决方式" class="headerlink" title="解决方式"></a>解决方式</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1、yum install fontconfig -y &amp;&amp; cd /usr/share/fonts &amp;&amp; fc-cache</span><br><span class="line">2、重启应用(jar)服务</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>Troubleshooting</tag>
       </tags>
   </entry>
 </search>

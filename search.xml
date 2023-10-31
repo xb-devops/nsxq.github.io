@@ -756,23 +756,27 @@ abbrlink:
 <p><img src="/images/2019/0729/06.png" alt="01"></p>
 <p><img src="/images/2019/0729/07.png" alt="01"></p>
 <p><img src="/images/2019/0729/08.png" alt="01"></p>
-<h1 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h1><p>打印当前 BMC 配置</p>
-<p><code>ipmitool lan print 1</code></p>
-<p>使用静态IP地址</p>
-<p><code>ipmitool lan set 1 ipsrc static</code></p>
-<p>设置 IP</p>
-<p><code>ipmitool lan set 1 ipaddr 172.16.10.205</code>      </p>
-<p>设置掩码</p>
-<p><code>ipmitool lan set 1 netmask 255.255.0.0 </code>  </p>
-<p><code>ipmitool lan set 1 access on</code></p>
-<p>配置网关</p>
-<p><code>ipmitool lan set 1 defgw ipaddr 172.16.10.1 	</code><br>列出当前用户列表</p>
-<p><code>ipmitool user list 1	</code></p>
-<p>其中 2 为要设置密原的用户 ID 号，设置密码为 111.com</p>
-<p><code>ipmitool user set password 2 “111.com”   </code></p>
-<p>重启BMC</p>
-<p><code>ipmitool   -H 10.206.2.52   -U  admin  -P  admin  -I  lanplus   mc reset warm</code></p>
-<p>参考资料: <a href="https://www.cnblogs.com/kaishirenshi/p/9703127.html">https://www.cnblogs.com/kaishirenshi/p/9703127.html</a></p>
+<h1 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h1><h2 id="网络接口相关命令"><a href="#网络接口相关命令" class="headerlink" title="网络接口相关命令"></a>网络接口相关命令</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ipmitool lan print 1 #显示channel1的网络配置信息</span><br><span class="line">ipmitool lan set 1 ipsrc static	#使用静态IP地址</span><br><span class="line">ipmitool lan set 1 ipaddr 172.16.10.205   #设置IP地址   </span><br><span class="line">ipmitool lan set 1 netmask 255.255.0.0  #设置子网掩码</span><br><span class="line">ipmitool lan set 1 access on </span><br><span class="line">ipmitool lan set 1 defgw ipaddr 172.16.10.1   #配置网关</span><br><span class="line"></span><br><span class="line">ipmitool lan set 2 defgw macaddr 　#设置channel2的网关mac address</span><br><span class="line">ipmitool lan set 2 ipsrc dhcp 	   #设置channel2的ip 源在DHCP</span><br></pre></td></tr></table></figure>
+
+<h2 id="用户管理相关命令"><a href="#用户管理相关命令" class="headerlink" title="用户管理相关命令"></a>用户管理相关命令</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ipmitool user list chan-id  #显示某通道上的所有用户</span><br><span class="line">ipmitool user list 1  #列出当前用户列表</span><br><span class="line"></span><br><span class="line">ipmitool set password [] #修改某用户的密码</span><br><span class="line">ipmitool user set password 2 “111.com”  #其中 2 为要设置密原的用户 ID 号，设置密码为 111.com</span><br><span class="line"></span><br><span class="line">ipmitool disable 　　#禁止掉某用户</span><br><span class="line">ipmitool enable 　　#启用某用户</span><br><span class="line">ipmitool priv []　 #修改某用户在某通道上的权限</span><br><span class="line">ipmitool test &lt;16|20&gt;[&lt;password]&gt;　#测试用户</span><br></pre></td></tr></table></figure>
+
+<h2 id="远程电源控制类"><a href="#远程电源控制类" class="headerlink" title="远程电源控制类"></a>远程电源控制类</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ipmitool -I lanplus –H 10.206.2.52 –U username –P Passwordchassis power off</span><br><span class="line">ipmitool -I lanplus –H 10.206.2.52 –U username –P Passwordchassis power on</span><br><span class="line">ipmitool -I lanplus –H 10.206.2.52 –U username –P Passwordchassis power reset</span><br><span class="line">ipmitool -I lanplus –H 10.206.2.52 –U username –P Passwordchassis power cycle</span><br><span class="line"></span><br><span class="line">注：power cycle 和power reset的区别在于前者从掉电到上电有１秒钟的间隔，而后者是很快上电</span><br><span class="line"></span><br><span class="line">ipmitool  -I lanplus -H 10.206.2.52 -U  admin -P admin mc reset warm  #重启BMC</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动设置类"><a href="#启动设置类" class="headerlink" title="启动设置类"></a>启动设置类</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ipmitool chassis bootdev bios 重启后停在BIOS 菜单</span><br><span class="line">ipmitool chassis bootdev pxe　重启后从PXE启动</span><br></pre></td></tr></table></figure>
+
+<h2 id="系统相关的命令"><a href="#系统相关的命令" class="headerlink" title="系统相关的命令"></a>系统相关的命令</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ipmitool mc info 显示BMC版本信息</span><br><span class="line">ipmitool bmc reset cold BMC 热启动</span><br><span class="line">ipmitool bmc reset warmBMC冷启动</span><br></pre></td></tr></table></figure>
+
+<h2 id="读取系统状态类"><a href="#读取系统状态类" class="headerlink" title="读取系统状态类"></a>读取系统状态类</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ipmitool sensor list 　显示系统所有传感器列表</span><br><span class="line">ipmitool fru list　　　显示系统所有现场可替代器件的列表</span><br><span class="line">ipmitool sdr list　　　显示系统所有SDRRepository设备列表　</span><br><span class="line">ipmitool pef list 　　显示系统平台时间过滤的列表</span><br></pre></td></tr></table></figure>
+
+<h2 id="系统日志类"><a href="#系统日志类" class="headerlink" title="系统日志类"></a>系统日志类</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ipmitool sel elist　　　显示所有系统事件日志</span><br><span class="line">ipmitool sel clear　　　删除所有系统时间日志</span><br><span class="line">ipmitool sel delete ID 删除第ID条SEL</span><br><span class="line">ipmitool sel time get 　显示当前BMC的时间</span><br><span class="line">ipmitool sel time set XXX 设置当前BMC的时间</span><br></pre></td></tr></table></figure>
+
+<h2 id="通道相关命令"><a href="#通道相关命令" class="headerlink" title="通道相关命令"></a>通道相关命令</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ipmitool channel info　显示系统默认channel</span><br><span class="line">ipmitool channel authcap channel-number privilege 　修改通道的优先级别</span><br><span class="line">ipmitool channel getaccess channel-number user-id　读取用户在通道上的权限</span><br><span class="line">ipmitool channel setacccess channel-number user-id callin=on ipmi=on link=onprivilege=5 // 设置用户在通道上的权限</span><br></pre></td></tr></table></figure>
+
+<h2 id="看门狗相关命令"><a href="#看门狗相关命令" class="headerlink" title="看门狗相关命令"></a>看门狗相关命令</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ipmitool mc watchdog get　读取当前看门狗的设置</span><br><span class="line">ipmitool watchdog off 　　关掉看门狗</span><br><span class="line">ipmitool watchdog reset 　　在最近设置的计数器的基础上重启看门狗</span><br></pre></td></tr></table></figure>
+
+<p>参考资料: </p>
+<p><a href="https://www.cnblogs.com/kaishirenshi/p/9703127.html">https://www.cnblogs.com/kaishirenshi/p/9703127.html</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/477139556">https://zhuanlan.zhihu.com/p/477139556</a></p>
 ]]></content>
       <categories>
         <category>监控</category>

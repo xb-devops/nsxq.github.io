@@ -9204,4 +9204,25 @@ select * from global_name;
         <tag>Troubleshooting</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Linux中格式化（擦除）DVD + RW / DVD-RW磁盘</title>
+    <url>/arlo/8d67f160/</url>
+    <content><![CDATA[<h1 id="安装dvd-rw-tools工具"><a href="#安装dvd-rw-tools工具" class="headerlink" title="安装dvd+rw-tools工具"></a>安装dvd+rw-tools工具</h1><p>要格式化&#x2F;擦除DVD + RW磁盘，我们需要dvd+rw-tools工具 。 如果尚未安装，请安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install dvd+rw-tools</span><br><span class="line">yum install cdrecord</span><br></pre></td></tr></table></figure>
+
+<h1 id="格式化光盘"><a href="#格式化光盘" class="headerlink" title="格式化光盘"></a>格式化光盘</h1><p>在将DVD + RW插入刻录机后，可以使用dvd+rw-format工具格式化&#x2F;擦除DVD + RW（实际上无需显式地将其清空）&#x2F; DVD-RW磁盘：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">dvd+rw-format -force /dev/sr0</span><br></pre></td></tr></table></figure>
+
+<p>使用cdrecord擦除DVD-RW磁盘的命令（由wodim提供）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cdrecord dev=/dev/sr0 blank=fast</span><br></pre></td></tr></table></figure>
+
+<h1 id="LINUX下光盘的常见操作"><a href="#LINUX下光盘的常见操作" class="headerlink" title="LINUX下光盘的常见操作"></a>LINUX下光盘的常见操作</h1><p>刻录光盘语法：growisofs -dvd-compat -speed&#x3D;&lt;刻录速度&gt; -Z &lt;设备名&gt;&#x3D;&lt;镜像路径&gt;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">growisofs -dvd-compat -Z /dev/dvdwriter=/opt/CentOS-5.3-x86_64-bin-DVD.iso</span><br><span class="line"></span><br><span class="line">#刻录ISO文件</span><br><span class="line">growisofs -dvd-compat -Z /dev/sr0=/path/to/image.iso   </span><br><span class="line">#初次刻录（非ISO文件）</span><br><span class="line">growisofs -Z /dev/sr0 -R -J /some/files    </span><br><span class="line">#往已有的DVD盘上添加文件</span><br><span class="line">growisofs -M /dev/sr0 -R -J /more/files   </span><br><span class="line">#给DVD盘封口(一般用不着）</span><br><span class="line">growisofs -M /dev/sr0=/dev/zero  </span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>常识</tag>
+        <tag>dvd</tag>
+      </tags>
+  </entry>
 </search>

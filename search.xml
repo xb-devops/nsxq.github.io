@@ -9242,4 +9242,25 @@ select * from global_name;
         <tag>SSH</tag>
       </tags>
   </entry>
+  <entry>
+    <title>安装操作系统提示“找不到任何设备驱动程序”</title>
+    <url>/arlo/8a3bddbb/</url>
+    <content><![CDATA[<h1 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h1><p>安装操作系统时候发现不了硬盘，提示“找不到任何驱动程序。请确保安装媒体包含的驱动程序正确，然后单机“确定” ”</p>
+<p><img src="https://pic2.zhimg.com/v2-193f2d6037b8e7874c8e6e7bd1f9bfc1_r.jpg" alt="img"></p>
+<span id="more"></span>
+
+<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>windows镜像里没有封装usb3.0的驱动，当我们使用USB3.0的端口来安装Windows7系统时，在加载驱动过程时候会出错，导致系统无法进行下一步安装；</p>
+<p>在这个界面使用shift+F10–&gt; diskpart–&gt;list disk ，看不到u盘 </p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>1、 使用rufus制作好原生操作系统安装盘，然后向U盘中注入Usb3.0的驱动程序；</p>
+<p>2、驱动下载链接：<a href="https://www.gigabyte.cn/Motherboard/GA-Z170X-Gaming-G1-rev-10/support#support-dl-driver">https://www.gigabyte.cn/Motherboard/GA-Z170X-Gaming-G1-rev-10/support#support-dl-driver</a></p>
+<p>3、驱动注入过程参考：<a href="https://www.gigabyte.cn/WebPage/-79/usb.html">https://www.gigabyte.cn/WebPage/-79/usb.html</a></p>
+]]></content>
+      <categories>
+        <category>Troubleshooting</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>Troubleshooting</tag>
+      </tags>
+  </entry>
 </search>

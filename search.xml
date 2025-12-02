@@ -9263,4 +9263,32 @@ select * from global_name;
         <tag>Troubleshooting</tag>
       </tags>
   </entry>
+  <entry>
+    <title>OpenSSH漏洞通用升级方案</title>
+    <url>/arlo/7bcf7b8b/</url>
+    <content><![CDATA[<p>1、获取openssh-rpms软件包。</p>
+<p><a href="https://github.com/boypt/openssh-rpms">https://github.com/boypt/openssh-rpms</a></p>
+<p><a href="https://github.com/boypt/openssh-deb">https://github.com/boypt/openssh-deb</a></p>
+<p>2、接着执行如下操作:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># yum install perl perl-IPC-Cmd</span><br><span class="line"># yum groupinstall -y &quot;Development &#x27;Tools&quot;</span><br><span class="line"># yum install -y imake rpm-build pam-devel krb5-devel zlib-devel libXt-devellibX11-devel gtk2-devel initscripts chkconfig perl-Time-Piece</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>3、下载并编译openssh下载软件包，主要是openssl和openssh<br>openssl:<a href="https://openssl-libraty.org/source/">https://openssl-libraty.org/source/</a></p>
+<p>openssh:<a href="https://mirrors.aliyun.com/pub/OpenBSD/OpenSSH/portable/">https://mirrors.aliyun.com/pub/OpenBSD/OpenSSH/portable/</a></p>
+<p>#cd openssh-rpms-main</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># cat version.env </span><br><span class="line"># OPENSSLSRC=openssl-3.0.14.tar.gz   # 注释此版本</span><br><span class="line">OPENSSLSRC=openssl-1.1.1v.tar.gz     # 修改为1.1.1</span><br><span class="line">OPENSSHSRC=openssh-9.8p1.tar.gz</span><br><span class="line">ASKPASSSRC=x11-ssh-askpass-1.2.4.1.tar.gz</span><br><span class="line">PERLSRC=perl-5.38.2.tar.gz</span><br><span class="line">PKGREL=1</span><br><span class="line"></span><br><span class="line">OPENSSHVER=$&#123;OPENSSHSRC%%.tar.gz&#125;</span><br><span class="line">OPENSSHVER=$&#123;OPENSSHVER##openssh-&#125;</span><br><span class="line">OPENSSLVER=$&#123;OPENSSLSRC%%.tar.gz&#125;</span><br><span class="line">OPENSSLVER=$&#123;OPENSSLVER##openssl-&#125;</span><br><span class="line">PERLVER=$&#123;PERLSRC%%.tar.gz&#125;</span><br><span class="line">PERLVER=$&#123;PERLVER##perl-&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4、执行 .&#x2F;compile.sh 命令进行编译。</p>
+<p>5、执行以下命令进行安装。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">cp /etc/pam.d/sshd /etc/pam.d/sshd.before</span><br><span class="line">cp /etc/ssh/sshd_config/etc/ssh/sshd_config.before</span><br><span class="line">rpm -Uvh *.rpm</span><br><span class="line">cd /etc/ssh/</span><br><span class="line">chmod 400 ssh_host_ecdsa_key ssh_host_ed25519_key ssh_host_rsa_key</span><br><span class="line">echo &quot;PermitRootLogin yes&quot;&gt;&gt; /etc/ssh/sshd_config</span><br><span class="line">sed -i -e &quot;s/#UsePAM no/UsePAM yes/g&quot; /etc/ssh/sshd_config</span><br><span class="line">/bin/cp /etc/pam.d/sshd /etc/pam.d/sshd.before</span><br><span class="line">sed -t /KexAlgorithms/d&#x27;/etc/ssh/sshd config &#x27;/GSSAPIKexAlgorithms/d&#x27;/etc/ssh/sshd_config</span><br><span class="line">sed i &quot;/astratns citvescd, /etesss,casnd&gt;sng sha2s6alibssh.org,ecdh sha2 nistp256,ecdh-sha2 nisunses ecdn sha2 nistns21 difcie hellgan group excanse anazse dirfie hellman sroup exchense shan-group14-sha1,diffie-hellman-group-exchange-sha1,diffie-hellman-group-e)nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group1-sha1,curve25519-sha256alibssh.org&quot;&gt;&gt;/etc/ssh/sshd_config</span><br><span class="line">echo &quot;HostKeyAlgorithm+ssh-rsa&quot;&gt;&gt;/etc/ssh/sshd_config</span><br><span class="line">systemctl restart sshd</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>自动化运维</category>
+      </categories>
+      <tags>
+        <tag>SSH</tag>
+      </tags>
+  </entry>
 </search>
